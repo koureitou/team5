@@ -12,5 +12,4 @@ public class Dept {
 		private String createUser;
 		private Date updateDate;
 		private Date updateUser;
-
 }
