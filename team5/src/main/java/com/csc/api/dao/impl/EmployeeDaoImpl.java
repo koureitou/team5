@@ -2,6 +2,7 @@ package com.csc.api.dao.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,6 +14,7 @@ import com.csc.api.entity.Employee;
 @Repository
 public class EmployeeDaoImpl implements EmployeeDao {
 	
+	@Autowired
 	private JdbcTemplate jdbctemplate;
 
 	@Override

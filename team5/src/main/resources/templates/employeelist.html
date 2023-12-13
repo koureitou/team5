@@ -25,7 +25,7 @@
 				入社年月日<input type="date">-TO-<input type="date"></br>
 				氏名<input type="text"></br>
 
-				<input type="button" name="serch" value="検索">
+				<input th: type="button" name="serch" value="検索">
 				</input>
 				<input type="button" name="add" value="追加">
 				</input>
@@ -56,14 +56,14 @@
 				<tbody>
 					<tr th:each="employee,stat:${employeelist}">
 						<td><input type="checkbox"></input></td>
-						<td>${employee.employeeID}</td>
-						<td>${employee.employeeName}</td>
-						<td>${employee.deptID}</td>
-						<td>${employee.employeeSrtdate}</td>
-						<td>${employee.genderTypeNo}</td>
-						<td>${employee.employeeBirthday}</td>
-						<td>${employee.employeeAddress}</td>
-						<td>${employee.employeeEmail}</td>
+						<td>[[${employee.employeeId}]]</td>
+						<td>[[${employee.employeeName}]]</td>
+						<td>[[${employee.deptId}]]</td>
+						<td>[[${employee.employeeStartdate}]]</td>
+						<td th:text="${employee.genderTypeNo}"></td>
+						<td>[[${employee.employeeBirthday}]]</td>
+						<td>[[${employee.employeeAddress}]]</td>
+						<td>[[${employee.employeeEmail}]]</td>
 					</tr>
 				</tbody>
 			</table>
