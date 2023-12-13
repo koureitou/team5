@@ -1,0 +1,43 @@
+@charset "UTF-8";
+body{
+	margin: 0;
+	padding: 0;
+	background-color: aliceblue;
+	
+}
+div{
+	position: relative;
+	float: left;	
+}
+#div_main{
+	width: 80%;
+	height: 100%;
+	border: 1px;
+	margin-left: 10%;
+	float: left;
+	background-color: aliceblue;
+	
+}
+#div_eplist{
+	width: 80%;
+	height: 100%;
+	border: 1px;
+	margin-left: 10%;
+	float: left;
+	background-color: aliceblue;
+	
+	
+}
+#emjh{
+	width:100%;
+	
+}
+#emjh ,#emjh tr, #emjh td,#emjh th{
+	
+	border: 1px solid blue;
+	border-collapse: collapse;
+	font-family: fantasy;
+	font-size:medium;
+	line-height: 30px;
+	}
+	
