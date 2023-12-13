@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="ja" xmlns="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="demo01.css">
 	<title>Insert title here</title>
+
+
 </head>
 
 <body>
-
 	<div id="div_main">
 		<div id="div_eplist">
 
@@ -34,49 +36,39 @@
 				<a href="javascript:self.close()">
 					<input type="button" value="閉まる"></input>
 				</a>
-
-
 				</table>
-					<hr></tr>
-				<table id="emjh">
-					<thead>
-						<tr>
-							<th>選択</th>
-							<th>社員ID</th>
-							<th>社員氏名</th>
-							<th>部門</th>
-							<th>入社年月日</th>
-							<th>性別</th>
-							<th>年齢</th>
-							<th>住所</th>
-							<th>メールアドレス</th>
-					</thead>
+				<hr>
 			</tr>
-			<tbody>
-				
-            <tr th:each="employee,stat:${employeelist}">
-			<td><input type="checkbox"></input></td>
-            <td>${employee.employeeID}</td>
-            <td>${employee.employeeName}</td>
-            <td>${employee.deptID}</td>
-            <td>${employee.employeeSrtdate}</td>
-            <td>${employee.genderTypeNo}</td>
-            <td>${employee.employeeBirthday}</td>
-            <td>${employee.employeeAddress}</td>
-            <td>${employee.employeeEmail}</td>
-          </tr>
-         		
-
-			</tbody>
+			<table id="emjh">
+				<thead>
+					<tr>
+						<th>選択</th>
+						<th>社員ID</th>
+						<th>社員氏名</th>
+						<th>部門</th>
+						<th>入社年月日</th>
+						<th>性別</th>
+						<th>年齢</th>
+						<th>住所</th>
+						<th>メールアドレス</th>
+				</thead>
+				</tr>
+				<tbody>
+					<tr th:each="employee,stat:${employeelist}">
+						<td><input type="checkbox"></input></td>
+						<td>[[${employee.employeeId}]]</td>
+						<td>[[${employee.employeeName}]]</td>
+						<td>[[${employee.deptId}]]</td>
+						<td>[[${employee.employeeStartdate}]]</td>
+						<td th:text="${employee.genderTypeNo}"></td>
+						<td>[[${employee.employeeBirthday}]]</td>
+						<td>[[${employee.employeeAddress}]]</td>
+						<td>[[${employee.employeeEmail}]]</td>
+					</tr>
+				</tbody>
 			</table>
-
 		</div>
 	</div>
-
-
-
-
-
 </body>
 
 </html>

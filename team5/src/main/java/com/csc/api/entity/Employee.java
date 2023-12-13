@@ -6,16 +6,16 @@ import lombok.*;
 @Data
 public class Employee {
 	
-	private int employeeID;
+	private int employeeId;
 	private String employeeName;
-	private String deptID;
-	private Date employeeSrtdate;
+	private String deptId;
+	private Date employeeStartdate;
 	private String genderTypeNo;
 	private Date employeeBirthday;
 	private String employeeTel;
 	private String employeeAddress;
 	private String employeeEmail;
-	private String del_flg;
+	private String delFlg;
 	private Date createDate;
 	private String createUser;
 	private Date updateDate;
