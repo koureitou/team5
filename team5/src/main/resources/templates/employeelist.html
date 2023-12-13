@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="demo01.css">
+	<title>Insert title here</title>
+</head>
+
+<body>
+
+	<div id="div_main">
+		<div id="div_eplist">
+
+			社員ID<tr><input type="text">
+				部 門<select>
+					<option>--部門を選んでください--</option>
+					<option name="bumem" id="b" value="財務部">管理部</option>
+					<option name="bumem" id="c" value="管理部">営業部</option>
+					<option name="bumem" id="d" value="IT部">IT部</option>
+					<option name="bumem" id="e" value="営業部">財務部</option>
+				</select></br>
+				入社年月日<input type="date">-TO-<input type="date"></br>
+				氏名<input type="text"></br>
+
+				<input type="button" name="serch" value="検索">
+				</input>
+				<input type="button" name="add" value="追加">
+				</input>
+				<input type="button" name="update" value="修正">
+				</input>
+				<input type="button" name="delete" value="削除">
+				</input>
+				<a href="javascript:self.close()">
+					<input type="button" value="閉まる"></input>
+				</a>
+
+
+				</table>
+					<hr></tr>
+				<table id="emjh">
+					<thead>
+						<tr>
+							<th>選択</th>
+							<th>社員ID</th>
+							<th>社員氏名</th>
+							<th>部門</th>
+							<th>入社年月日</th>
+							<th>性別</th>
+							<th>年齢</th>
+							<th>住所</th>
+							<th>メールアドレス</th>
+					</thead>
+			</tr>
+			<tbody>
+				
+            <tr th:each="employee,stat:${employeelist}">
+			<td><input type="checkbox"></input></td>
+            <td>${employee.employeeID}</td>
+            <td>${employee.employeeName}</td>
+            <td>${employee.deptID}</td>
+            <td>${employee.employeeSrtdate}</td>
+            <td>${employee.genderTypeNo}</td>
+            <td>${employee.employeeBirthday}</td>
+            <td>${employee.employeeAddress}</td>
+            <td>${employee.employeeEmail}</td>
+          </tr>
+         		
+
+			</tbody>
+			</table>
+
+		</div>
+	</div>
+
+
+
+
+
+</body>
+
+</html>
