@@ -1,4 +1,4 @@
-package com.csc.entity;
+package com.csc.api.entity;
 
 import java.util.Date;
 import lombok.*;

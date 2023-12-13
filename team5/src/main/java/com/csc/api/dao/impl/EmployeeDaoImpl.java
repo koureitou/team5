@@ -1,4 +1,4 @@
-package com.csc.dao.impl;
+package com.csc.api.dao.impl;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.csc.dao.EmployeeDao;
-import com.csc.entity.Employee;
+import com.csc.api.dao.EmployeeDao;
+import com.csc.api.entity.Employee;
 
 @Repository
 public class EmployeeDaoImpl implements EmployeeDao {
