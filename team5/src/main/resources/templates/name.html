@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>社員情報登録・更新</title>
+</head>
+<body>
+<form th:action="@{/result}" th:object="${registerForm}" method="post">
+	    <div>
+			<label for="employeeId">社員ID:</label>
+			<input type="text" th:field="*{employeeId}">
+		</div>
+		<div>
+			<label for="employeeName">氏名：</label> 
+			<input type="text" th:field="*{employeeName}">
+		</div>
+		<div>
+			<label for="deptId">所属：</label> 
+			<select th:field="*{deptId}">
+				<option value="なし">選択してください</option>
+				<option value="管理部">管理部１</option>
+				<option value="営業部">営業部2</option>
+				<option value="IT部">IT部3</option>
+				<option value="財務部">財務部4</option>
+			</select>
+		</div>
+		<div>
+			<label for="gender">性別：</label> 
+			<input type="radio" th:field="*{genderTypeNo}" >男
+			<input type="radio" th:field="*{genderTypeNo}" >女
+		</div>
+		<div>
+			<label for="number">電話番号:</label>
+			<input type="text" th:field="*{employeeTel}">
+		</div>
+		<div>
+			<label for="employeeStartDate">入社年月日</label>
+			<input type="date" th:field="*{employeeStartdate}">
+		</div>
+		<div>
+			<label for="birth">生年月日：</label> 
+			<input type="date" th:field="*{employeeBirthday}">
+		</div>
+		<div>
+			<label for="employeeAdress">住所:</label>
+			<input type="text" th:field="*{employeeAddress}">
+		</div>
+		<div>
+			<label for="employeeEmail">メールアドレス</label>
+			<input type="text" th:field="*{employeeEmail}">
+		</div>
+		<input type="submit" value="送信">
+	</form>
+</body>
+</html>
