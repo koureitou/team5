@@ -4,6 +4,8 @@ import java.util.Date;
 import lombok.*;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
 	
 	private int employeeId;
