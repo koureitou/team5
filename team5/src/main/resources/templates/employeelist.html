@@ -1,45 +1,120 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="demo01.css">
 	<title>Insert title here</title>
+	<style type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: aliceblue;
+		}
 
+		div {
+			position: relative;
+			float: left;
+		}
+
+		#div_main {
+			width: 80%;
+			height: 100%;
+			border: 1px;
+			margin-left: 10%;
+			float: left;
+			background-color: aliceblue;
+		}
+
+		#div_eplist {
+			width: 80%;
+			height: 100%;
+			border: 1px;
+			margin-left: 10%;
+			float: left;
+			background-color: aliceblue;
+		}
+
+		#emjh {
+			width: 100%;
+		}
+
+		#emjh,
+		#emjh tr,
+		#emjh td,
+		#emjh th {
+			border: 1px solid blue;
+			border-collapse: collapse;
+			font-family: fantasy;
+			font-size: medium;
+			line-height: 30px;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function () {
+			var emptal1 = document.getElementById("emjh");
+			var rows = emptal1.rows;
+			for (var i = 0; i < rows.length; i++) {
+				var tr = rows[i];
+				var cells = tr.cells;
+				var chose = cells[0];
+				choose.onclick = edit;
+
+			}
+		}
+		function edit() {
+			if (event && event.srcElement && event.srcElement.tagName == "TD") {
+				var editTD = event.srcElement;
+
+				editTD.innerHTML = "<input type='checkbox' >";
+				var input = editTD.firstChild;
+				if (input.tarName == "INPUT") {
+					input.value = oldName;
+				}
+			}
+		}
+		function delemp(employeeId) {
+			if (confirm('削除ですか？')) {
+				window.location.href = 'del.do?employeeId=' + employeeId;
+			}
+		}
+	</script>
 
 </head>
 
 <body>
 	<div id="div_main">
 		<div id="div_eplist">
+			<form id="emjh" th:action="@{/select}" method="post">
+				社員ID<tr><input type="text" name="employeeId">
+					部 門<select name="deptName">
+						<option>--部門を選んでください--</option>
+						<option id="11" value="管理部">営業部</option>
+						<option id="12" value="営業部">財務部</option>
+						<option id="13" value="IT部">IT部</option>
+						<option id="14" value="財務部">管理部</option>
+					</select></br>
+					入社年月日<input type="date" name="employeeStartdate">-TO-<input type="date"
+						name="employeeStartdate"></br>
+					氏名<input type="text" name="employeeName"></br>
 
-			社員ID<tr><input type="text">
-				部 門<select>
-					<option>--部門を選んでください--</option>
-					<option name="bumem" id="b" value="財務部">管理部</option>
-					<option name="bumem" id="c" value="管理部">営業部</option>
-					<option name="bumem" id="d" value="IT部">IT部</option>
-					<option name="bumem" id="e" value="営業部">財務部</option>
-				</select></br>
-				入社年月日<input type="date">-TO-<input type="date"></br>
-				氏名<input type="text"></br>
-
-				<input type="button" name="serch" value="検索">
-				</input>
-				<input type="button" name="add" value="追加">
-				</input>
-				<input type="button" name="update" value="修正">
-				</input>
-				<input type="button" name="delete" value="削除">
-				</input>
-				<a href="javascript:self.close()">
-					<input type="button" value="閉まる"></input>
-				</a>
-				</table>
-				<hr>
+					<input type="button" name="serch" value="検索">
+					</input>
+					<input type="button" name="add" value="追加">
+					</input>
+					<input type="button" name="update" value="修正">
+					</input>
+					<input type="button" th:onclick="'delemp('${employeelist}')'" name="dele" value="削除">
+					</input>
+					<a href="javascript:self.close()">
+						<input type="button" value="閉まる"></input>
+					</a>
+			</form>
+			<hr>
 			</tr>
-			<table id="emjh">
+			<table id="emjh" th:action="serch" method="post">
 				<thead>
 					<tr>
 						<th>選択</th>
@@ -55,15 +130,15 @@
 				</tr>
 				<tbody>
 					<tr th:each="employee,stat:${employeelist}">
-						<td><input type="checkbox"></input></td>
-						<td>[[${employee.employeeId}]]</td>
-						<td>[[${employee.employeeName}]]</td>
-						<td>[[${employee.deptId}]]</td>
-						<td>[[${employee.employeeStartdate}]]</td>
+						<td name="cloose"><input type="checkbox"></input></td>
+						<td onclick="edit()" th:text="${employee.employeeId}"></td>
+						<td th:text="${employee.employeeName}"></td>
+						<td th:text="${employee.deptId}"></td>
+						<td th:text="${employee.employeeStartdate}"></td>
 						<td th:text="${employee.genderTypeNo}"></td>
-						<td>[[${employee.employeeBirthday}]]</td>
-						<td>[[${employee.employeeAddress}]]</td>
-						<td>[[${employee.employeeEmail}]]</td>
+						<td th:text="${employee.employeeBirthday}"></td>
+						<td th:text="${employee.employeeAddress}"></td>
+						<td th:text="${employee.employeeEmail}"></td>
 					</tr>
 				</tbody>
 			</table>

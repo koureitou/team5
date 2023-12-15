@@ -10,5 +10,5 @@ public class Dept {
 		private Date createDate;
 		private String createUser;
 		private Date updateDate;
-		private Date updateUser;
+		private String updateUser;
 }
