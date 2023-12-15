@@ -14,9 +14,9 @@ public class RegisterForm implements Serializable {
 	private Integer employeeId;
 	private String employeeName;
 	private String deptId;
-	private Date employeeStartdate;
+	private String employeeStartdate;
 	private String genderTypeNo;
-	private Date employeeBirthday;
+	private String employeeBirthday;
 	private String employeeTel;
 	private String employeeAddress;
 	private String employeeEmail;
