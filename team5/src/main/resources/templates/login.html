@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	body{
+		margin: 20%;
+		padding: 0%;
+		background-color: darkgray;
+	}
+	div{
+		position:relative;
+		float:none;
+	}
+	#div_container{
+		width: 90%;
+		height:100%;
+		border: 1px;
+		margin-left: 10%;
+		float: left;
+		background-color: aliceblue;
+		
+	}
+	#div_tab{
+		border: 0px solid blue;
+			border-collapse: collapse;
+			width: 70%;
+			padding-top: 0%;
+			position: relative;
+			text-align: center;
+			line-height: 30px;
+			margin: 5%;
+	
+	}
+
+</style>
+</head>
+<body>
+	<div id="div0">
+		<div id="div_container">
+			<p id="div_tab" class="center">ログイン</p>
+			<form action="index.html" method="get">
+				<table id="div_tab">
+					<tr>
+						<th>ユーザー名前：</th>
+						<td><input type="text" name="loginId" value="u0001"/></td>
+					</tr>
+					<tr>
+						<th>パスワード：</th>
+						<td><input type="password" name="pwd" value="ok"/></td>
+					</tr>
+					<tr>
+						<th colspan="2">
+							<input type="submit" value="ログイン"/>
+							<input type="button" onclick="javascrtpt:window.location.href='re.html'" value="新しいアカウントを作成しますか?"/>
+							
+
+						</th>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
