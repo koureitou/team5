@@ -3,7 +3,6 @@ package com.csc.api.entity;
 import java.util.Date;
 import lombok.Data;
 @Data
-
 public class Dept {
 	
 		private String deptId;
