@@ -18,6 +18,5 @@
 	<select id="getMaxId" resultType="java.lang.Integer">
 	 	SELECT MAX(EMPLOYEE_ID)+1 FROM T_EMPLOYEE
 	</select>
-
 </mapper>
 
