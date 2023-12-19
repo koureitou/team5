@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="demo01.css">
+
 	<title>Insert title here</title>
 	<style type="text/css">
 		body {
@@ -54,63 +54,83 @@
 	</style>
 	<script type="text/javascript">
 		window.onload = function () {
-			var emptal1 = document.getElementById("emjh");
+			var emptal1 = document.getElementsByName("emjh");
 			var rows = emptal1.rows;
 			for (var i = 0; i < rows.length; i++) {
 				var tr = rows[i];
 				var cells = tr.cells;
-				var chose = cells[0];
-				choose.onclick = edit;
-
+				var chose = cells[1];
+				getname.onclick = edit;
 			}
 		}
 		function edit() {
 			if (event && event.srcElement && event.srcElement.tagName == "TD") {
 				var editTD = event.srcElement;
-
-				editTD.innerHTML = "<input type='checkbox' >";
+				editTD.innerHTML = "<input type='text'>";
 				var input = editTD.firstChild;
 				if (input.tarName == "INPUT") {
 					input.value = oldName;
 				}
 			}
 		}
-		function delemp(employeeId) {
+		function deleteById(employeeId) {
 			if (confirm('削除ですか？')) {
-				window.location.href = 'del.do?employeeId=' + employeeId;
+
 			}
 		}
-	</script>
+		function submitform(formId, url, method = undefined) {
+			var form = document.getElementById(formId);
+			form.action = url;
+			if (method !== undefined) form.method = method;
+			//form.value=form.getElementsByClassName(value).value
+			form.getElementsByClassName=value;
+			form.submit();
+		}
+		//function closeall() {
+		//	if (confirm("您确定要关闭本页吗？")) {
+		//	window.close;
 
+		//}
+
+		//}
+		//const closebt = document.getElementById('btnclose');
+		//closebt.addEventListener('click', function () {
+			//window.close();
+			//if (!window.closed) {
+			//	this.textContent = '閉じるのに失敗しました';
+			//}
+		//});
+
+
+	</script>
 </head>
 
 <body>
 	<div id="div_main">
 		<div id="div_eplist">
-			<form id="emjh" th:action="@{/select}" method="post">
-				社員ID<tr><input type="text" name="employeeId">
-					部 門<select name="deptName">
+			<form id="search">
+				社員ID<tr><input class="aaa" type="text" name="employeeId" id="sById">
+					部 門<select name="deptId">
 						<option>--部門を選んでください--</option>
-						<option id="11" value="管理部">営業部</option>
-						<option id="12" value="営業部">財務部</option>
+						<option id="11" value="管理部">管理部</option>
+						<option id="12" value="営業部">営業部</option>
 						<option id="13" value="IT部">IT部</option>
-						<option id="14" value="財務部">管理部</option>
+						<option id="14" value="財務部">財務部</option>
 					</select></br>
 					入社年月日<input type="date" name="employeeStartdate">-TO-<input type="date"
 						name="employeeStartdate"></br>
 					氏名<input type="text" name="employeeName"></br>
 
-					<input type="button" name="serch" value="検索">
+					<input type="submit" onclick="submitform('search','/selectById','get')" name="find" value="検索">
 					</input>
-					<input type="button" name="add" value="追加">
+					<input type="submit" onclick="submitform('search','/register','get')" name="add" value="追加">
 					</input>
-					<input type="button" name="update" value="修正">
-					</input>
-					<input type="button" th:onclick="'delemp('${employeelist}')'" name="dele" value="削除">
+					<input type="button" id="delete" value="削除">
 					</input>
 					<a href="javascript:self.close()">
-						<input type="button" value="閉まる"></input>
+						<input type="button" value="閉まる1"></input>
 					</a>
+					<input id="btnclose" type="button" onclick="closeall()" value="閉じる"></input>
 			</form>
 			<hr>
 			</tr>
@@ -130,9 +150,9 @@
 				</tr>
 				<tbody>
 					<tr th:each="employee,stat:${employeelist}">
-						<td name="cloose"><input type="checkbox"></input></td>
-						<td onclick="edit()" th:text="${employee.employeeId}"></td>
-						<td th:text="${employee.employeeName}"></td>
+						<td><input type="checkbox"></input></td>
+						<td th:text="${employee.employeeId}"></td>
+						<td id="getname" onclick="edit()" th:text="${employee.employeeName}"></td>
 						<td th:text="${employee.deptId}"></td>
 						<td th:text="${employee.employeeStartdate}"></td>
 						<td th:text="${employee.genderTypeNo}"></td>

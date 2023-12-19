@@ -1,16 +1,17 @@
 package com.csc.api.service;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.csc.api.form.SelectForm;
+import com.csc.api.mapper.UserMapper;
 
-import com.csc.api.entity.User;
-
+@Service
 public class UserService {
+	@Autowired
+	private UserMapper userMapper;
 
-	public List<User> getEmployeeList;
-
-	public User login(String userName, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public void add(SelectForm form) {
+		userMapper.select(form);
 	}
-
+	
 }
