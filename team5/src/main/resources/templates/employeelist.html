@@ -53,16 +53,16 @@
 		}
 	</style>
 	<script type="text/javascript">
-		window.onload = function () {
-			var emptal1 = document.getElementsByName("emjh");
-			var rows = emptal1.rows;
-			for (var i = 0; i < rows.length; i++) {
-				var tr = rows[i];
-				var cells = tr.cells;
-				var chose = cells[1];
-				getname.onclick = edit;
-			}
-		}
+		//window.onload = function () {
+		//	var emptal1 = document.getElementsByName("emjh");
+		//	var rows = emptal1.rows;
+			//for (var i = 0; i < rows.length; i++) {
+			//	var tr = rows[i];
+			//	var cells = tr.cells;
+			//	var chose = cells[1];
+			//	getname.onclick = edit;
+			//}
+		//}
 		function edit() {
 			if (event && event.srcElement && event.srcElement.tagName == "TD") {
 				var editTD = event.srcElement;
@@ -109,10 +109,10 @@
 	<div id="div_main">
 		<div id="div_eplist">
 			<form id="search" th:object="${selectForm}">
-				社員ID<tr><input class="aaa" type="text" name="employeeId" th:field="*{employeeId}" >
+				社員ID<tr><input class="aaa" type="number" th:field="*{employeeId}" >
 				<input type="submit" onclick="submitform('search','/selectById','get')" name="find" value="社員番号検索">
-					</input></br>
-					部 門<select name="deptId" th:field="*{deptId}">
+					</br>
+					部 門<select th:field="*{deptId}">
 						<option value="0">--部門を選んでください--</option>
 						<option value="11">管理部</option>
 						<option value="12">営業部</option>
@@ -121,23 +121,23 @@
 					</select></br>
 					入社年月日<input type="date" name="employeeStartdate">-TO-<input type="date"
 						name="employeeStartdate"></br>
-					氏名<input type="text" name="employeeName" th:field="*{employeeName}">
+					氏名<input type="text" th:field="*{employeeName}">
 					<input type="submit" onclick="submitform('search','/serchByName','get')" name="find" value="社員名前検索">
-					</input></br>
+					</br>
 
 					
 					<input type="submit" onclick="submitform('search','/findByKeyword','post')" id="select" value="検索">
-					</input>
-					<input type="submit" onclick="submitform('search','/register','get')" name="add" value="追加">
-					</input>
-					<input type="button" id="delete" value="削除">
-					</input>
 					
-					<input id="btnclose" type="button" onclick="closeall()" value="閉じる"></input>
+					<input type="submit" onclick="submitform('search','/register','get')" name="add" value="追加">
+					
+					<input type="button" id="delete" value="削除">
+					
+					
+					<input id="btnclose" type="button" onclick="closeall()" value="閉じる">
 			</form>
 			<hr>
 			</tr>
-			<table id="emjh" th:action="serch" method="post">
+			<table id="emjh">
 				<thead>
 					<tr>
 						<th>選択</th>

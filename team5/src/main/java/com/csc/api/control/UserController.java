@@ -27,7 +27,7 @@ public class UserController {
 		return "employeelist";
 	}
 	@PostMapping("/findByKeyword")
-	public String findByKeyword(@ModelAttribute SelectForm selectForm,Model model) {
+	public String findByKeyword(SelectForm selectForm,Model model) {
 		List<Employee> employeelist=userService.findByKeyword(selectForm);
 		System.out.println(selectForm.getEmployeeId());
 		model.addAttribute("employeelist", employeelist);

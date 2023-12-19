@@ -4,7 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.csc.api.mapper.UserMapper">
-
 	<resultMap type="com.csc.api.entity.Employee" id="EmpMap">
 		<id column="EMPLOYEE_ID" property="employeeId"></id>
 		<result column="EMPLOYEE_NAME" property="employeeName"></result>
@@ -16,19 +15,12 @@
 		<result column="EMPLOYEE_TEL" property="employeeTel"></result>
 		<result column="EMPLOYEE_ADDRESS" property="employeeAddress"></result>
 		<result column="EMPLOYEE_EMAIL" property="employeeEmail"></result>
-
 		<result column="DEL_FLG" property="delFlg"></result>
 		<result column="CREATE_DATE" property="createDate"></result>
-
 		<result column="CREATE_USER" property="createUser"></result>
-
 		<result column="UPDATE_DATE" property="updateDate"></result>
 		<result column="UPDATE_USER" property="updateUser"></result>
 	</resultMap>
-
-
-
-
 	<select id="findAll" resultMap="EmpMap">
 		SELECT t1.*, t2.GENDER_TYPE as
 		GENDER_TYPE,t3.DEPT_NAME as DEPT_NAME
@@ -38,14 +30,11 @@
 		LEFT JOIN M_DEPT
 		t3 ON t1.DEPT_ID = t3.DEPT_ID
 		WHERE t1.DEL_FLG='0';
-
 	</select>
-
 	<select id="findByKeyword" resultMap="EmpMap">
-		SELECT t1.*, t2.GENDER_TYPE as GENDER_TYPE,t3.DEPT_NAME as DEPT_NAME
+		SELECT t1.*, t2.GENDER_TYPE as GENDER_TYPE, t3.DEPT_NAME as DEPT_NAME
 		FROM T_EMPLOYEE t1
-		LEFT JOIN M_GENDER t2 ON t1.GENDER_TYPE_NO =
-		t2.GENDER_TYPE_NO
+		LEFT JOIN M_GENDER t2 ON t1.GENDER_TYPE_NO = t2.GENDER_TYPE_NO
 		LEFT JOIN M_DEPT t3 ON t1.DEPT_ID = t3.DEPT_ID
 		<where>
 			t1.DEL_FLG='0'
@@ -56,14 +45,9 @@
 			<if test="employeeName!=null and employeeName!=''">
 				AND t1.EMPLOYEE_NAME LIKE CONCAT('%', #{employeeName},'%')
 			</if>
-			<if test="deptId!=null and deptId!='0'">
+			<if test="deptId!=null and deptId!=0">
 				AND t1.DEPT_ID=#{deptId}
 			</if>
-
-
 		</where>
-
 	</select>
-
-
 </mapper>
