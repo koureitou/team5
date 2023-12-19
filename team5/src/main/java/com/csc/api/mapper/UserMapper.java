@@ -1,10 +1,14 @@
 package com.csc.api.mapper;
 
+import java.util.List;
 
+import com.csc.api.entity.Employee;
 import com.csc.api.form.SelectForm;
 
 public interface UserMapper {
-	
-	Integer select(SelectForm form);
+
+	List<Employee> findAll();
+
+	List<Employee> findByKeyword(SelectForm selectForm);
 
 }

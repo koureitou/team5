@@ -16,8 +16,5 @@ public class SelectForm implements Serializable{
 	private String employeeName;
 	private String deptId;
 	private String employeeStartdate;
-	
-	
-	
 
 }

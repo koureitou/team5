@@ -12,12 +12,14 @@ import com.csc.api.dao.EmployeeDao;
 import com.csc.api.entity.Employee;
 
 
-@Controller
+//@Controller
 //@GetMapping("/select")
 public class EmpController {
 	
 	@Autowired
 	EmployeeDao employeeDao;
+	
+	
 
 	@GetMapping("/findAll")
 	public String findAll(Model model) {
@@ -35,8 +37,17 @@ public class EmpController {
 	}
 	@GetMapping("/selectById")
 	public String selectById(@RequestParam int employeeId,Model model) {
-		
+
 		List<Employee> employeelist=employeeDao.selectById(employeeId,model);
+		System.out.println(employeelist);
+		model.addAttribute("employeelist", employeelist);
+		return "employeelist";
+	
+	}
+	@GetMapping("/serchByName")
+	public String serchByName(@RequestParam String employeeName,Model model) {
+
+		List<Employee> employeelist=employeeDao.serchByName(employeeName,model);
 		System.out.println(employeelist);
 		model.addAttribute("employeelist", employeelist);
 		return "employeelist";

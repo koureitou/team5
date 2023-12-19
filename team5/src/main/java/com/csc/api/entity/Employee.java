@@ -10,8 +10,10 @@ public class Employee {
 	private int employeeId;
 	private String employeeName;
 	private String deptId;
+	private String deptName;
 	private Date employeeStartdate;
 	private String genderTypeNo;
+	private String genderType;
 	private Date employeeBirthday;
 	private String employeeTel;
 	private String employeeAddress;

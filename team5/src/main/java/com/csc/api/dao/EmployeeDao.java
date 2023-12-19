@@ -11,7 +11,6 @@ public interface EmployeeDao {
 	List<Employee> updateAll();
 	List<Employee> addAll();
 	void deleteById(int employeeId);
-	//List<Employee> selectById(int employeeId);
 	List<Employee> selectById(int employeeId, Model model);
-	//List<Employee> selectById(int employeeId);
+	List<Employee> serchByName(String employeeName, Model model);
 }

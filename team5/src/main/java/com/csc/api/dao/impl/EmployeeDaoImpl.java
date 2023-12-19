@@ -27,13 +27,22 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 	@Override
 	public List<Employee> selectById(int employeeId, Model model) {
-		//Employee employee=new Employee();
-		//employeeId=employee.getEmployeeId();
+	
 		String sql="select * from T_EMPLOYEE where EMPLOYEE_ID="+employeeId;
 		RowMapper<Employee> rowMapper=new BeanPropertyRowMapper<Employee>(Employee.class);
 		jdbctemplate.query(sql, rowMapper);
 		return this.jdbctemplate.query(sql, rowMapper);
-	
+		
+	}
+	@Override
+	public List<Employee> serchByName(String employeeName,Model model){
+
+		String sql="select * from T_EMPLOYEE where EMPLOYEE_NAME LIKE '%"+employeeName+"%'";
+		RowMapper<Employee> rowMapper=new BeanPropertyRowMapper<Employee>(Employee.class);
+		jdbctemplate.query(sql, rowMapper);
+		
+		return this.jdbctemplate.query(sql, rowMapper);
+		
 	}
 
 
@@ -52,36 +61,5 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		// TODO Auto-generated method stub
 		
 	}
-
-//	@Override
-//	public void deleteById(int employeeId) {
-//		
-//		Employee employee=new Employee();
-//		employeeId=employee.getEmployeeId();
-//		String sql="delete from T_EMPLOYEE where EMPLOYEE_ID=? ";
-//		RowMapper<Employee> rowMapper=new BeanPropertyRowMapper<Employee>(Employee.class);
-//		jdbctemplate.query(sql, rowMapper);
-//	}
-
-//	@Override
-//	public List<Employee> addAll() {
-//		
-//		return null;
-//	}
-
-
-//	@Override
-//	public List<Employee> selectById(int employeeId) {
-//		Employee employee=new Employee();
-//		employeeId=employee.getEmployeeId();
-//		String sql="select * from T_EMPLOYEE where EMPLOYEE_ID="+employeeId;
-//		RowMapper<Employee> rowMapper=new BeanPropertyRowMapper<Employee>(Employee.class);
-//		jdbctemplate.query(sql, rowMapper);
-//	
-//		return this.jdbctemplate.query(sql, rowMapper);
-//	}
-
-
-	
-
 }
+

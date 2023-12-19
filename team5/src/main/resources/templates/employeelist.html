@@ -108,28 +108,31 @@
 <body>
 	<div id="div_main">
 		<div id="div_eplist">
-			<form id="search">
-				社員ID<tr><input class="aaa" type="text" name="employeeId" id="sById">
-					部 門<select name="deptId">
-						<option>--部門を選んでください--</option>
-						<option id="11" value="管理部">管理部</option>
-						<option id="12" value="営業部">営業部</option>
-						<option id="13" value="IT部">IT部</option>
-						<option id="14" value="財務部">財務部</option>
+			<form id="search" th:object="${selectForm}">
+				社員ID<tr><input class="aaa" type="text" name="employeeId" th:field="*{employeeId}" >
+				<input type="submit" onclick="submitform('search','/selectById','get')" name="find" value="社員番号検索">
+					</input></br>
+					部 門<select name="deptId" th:field="*{deptId}">
+						<option value="0">--部門を選んでください--</option>
+						<option value="11">管理部</option>
+						<option value="12">営業部</option>
+						<option value="13">IT部</option>
+						<option value="14">財務部</option>
 					</select></br>
 					入社年月日<input type="date" name="employeeStartdate">-TO-<input type="date"
 						name="employeeStartdate"></br>
-					氏名<input type="text" name="employeeName"></br>
+					氏名<input type="text" name="employeeName" th:field="*{employeeName}">
+					<input type="submit" onclick="submitform('search','/serchByName','get')" name="find" value="社員名前検索">
+					</input></br>
 
-					<input type="submit" onclick="submitform('search','/selectById','get')" name="find" value="検索">
+					
+					<input type="submit" onclick="submitform('search','/findByKeyword','post')" id="select" value="検索">
 					</input>
 					<input type="submit" onclick="submitform('search','/register','get')" name="add" value="追加">
 					</input>
 					<input type="button" id="delete" value="削除">
 					</input>
-					<a href="javascript:self.close()">
-						<input type="button" value="閉まる1"></input>
-					</a>
+					
 					<input id="btnclose" type="button" onclick="closeall()" value="閉じる"></input>
 			</form>
 			<hr>
@@ -153,12 +156,13 @@
 						<td><input type="checkbox"></input></td>
 						<td th:text="${employee.employeeId}"></td>
 						<td id="getname" onclick="edit()" th:text="${employee.employeeName}"></td>
-						<td th:text="${employee.deptId}"></td>
-						<td th:text="${employee.employeeStartdate}"></td>
-						<td th:text="${employee.genderTypeNo}"></td>
-						<td th:text="${employee.employeeBirthday}"></td>
+						<td th:text="${employee.deptName}"></td>
+						<td th:text="${#dates.format(employee.employeeStartdate, 'yyyy/MM/dd')}"></td>
+						<td th:text="${employee.genderType}"></td>
+						<td th:text="${#dates.format(employee.employeeBirthday, 'yyyy/MM/dd')}"></td>
 						<td th:text="${employee.employeeAddress}"></td>
 						<td th:text="${employee.employeeEmail}"></td>
+						
 					</tr>
 				</tbody>
 			</table>
