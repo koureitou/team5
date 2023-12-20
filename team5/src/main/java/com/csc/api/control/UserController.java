@@ -49,5 +49,5 @@ public class UserController {
         userService.delById(ids);
         return "redirect:/findAll"; 
     }
-
+	
 }
