@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.csc.api.entity.Employee;
+
 import com.csc.api.form.SelectForm;
 import com.csc.api.mapper.UserMapper;
 
@@ -19,6 +20,12 @@ public class UserService {
 	}
 	public List<Employee> findByKeyword(SelectForm selectForm) {
 		return userMapper.findByKeyword(selectForm);
+	}
+	public void delById(List<Long> ids) {
+		
+		 userMapper.delById(ids);
+		
+
 	}
 
 }

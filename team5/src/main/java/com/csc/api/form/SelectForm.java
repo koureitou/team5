@@ -1,6 +1,9 @@
 package com.csc.api.form;
 
 import java.io.Serializable;
+//import java.util.Date;
+
+//import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
@@ -15,6 +18,9 @@ public class SelectForm implements Serializable{
 	private Integer employeeId;
 	private String employeeName;
 	private String deptId;
-	private String employeeStartdate;
+	//@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private String employeeStartdate1;
+	//@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private String employeeStartdate2;
 
 }

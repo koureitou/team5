@@ -8,9 +8,9 @@ import com.csc.api.entity.Employee;
 
 public interface EmployeeDao {
 	List<Employee> findAll();
-	List<Employee> updateAll();
-	List<Employee> addAll();
-	void deleteById(int employeeId);
+	//List<Employee> updateAll();
+	//List<Employee> addAll();
+	//void deleteById(int employeeId);
 	List<Employee> selectById(int employeeId, Model model);
 	List<Employee> serchByName(String employeeName, Model model);
 }

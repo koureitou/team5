@@ -53,16 +53,7 @@
 		}
 	</style>
 	<script type="text/javascript">
-		//window.onload = function () {
-		//	var emptal1 = document.getElementsByName("emjh");
-		//	var rows = emptal1.rows;
-			//for (var i = 0; i < rows.length; i++) {
-			//	var tr = rows[i];
-			//	var cells = tr.cells;
-			//	var chose = cells[1];
-			//	getname.onclick = edit;
-			//}
-		//}
+
 		function edit() {
 			if (event && event.srcElement && event.srcElement.tagName == "TD") {
 				var editTD = event.srcElement;
@@ -73,34 +64,37 @@
 				}
 			}
 		}
-		function deleteById(employeeId) {
-			if (confirm('削除ですか？')) {
 
-			}
-		}
 		function submitform(formId, url, method = undefined) {
 			var form = document.getElementById(formId);
 			form.action = url;
 			if (method !== undefined) form.method = method;
-			//form.value=form.getElementsByClassName(value).value
-			form.getElementsByClassName=value;
+			form.getElementsByClassName = value;
 			form.submit();
 		}
-		//function closeall() {
-		//	if (confirm("您确定要关闭本页吗？")) {
-		//	window.close;
 
-		//}
+		function del() {
+			const checkboxes = document.querySelectorAll('.checkbox');
+			const selectedIds = [];
 
-		//}
-		//const closebt = document.getElementById('btnclose');
-		//closebt.addEventListener('click', function () {
-			//window.close();
-			//if (!window.closed) {
-			//	this.textContent = '閉じるのに失敗しました';
-			//}
-		//});
+			checkboxes.forEach(checkbox => {
+				if (checkbox.checked) {
+					selectedIds.push(checkbox.value);
+				}
+			});
 
+			if (selectedIds.length > 0) {
+				const form = document.getElementById('deleteForm');
+				const input = document.createElement('input');
+				input.type = 'hidden';
+				input.name = 'selectedIds';
+				input.value = selectedIds.join(',');
+				form.appendChild(input);
+				form.submit();
+			} else {
+				alert('请选择要删除的项');
+			}
+		}
 
 	</script>
 </head>
@@ -109,8 +103,8 @@
 	<div id="div_main">
 		<div id="div_eplist">
 			<form id="search" th:object="${selectForm}">
-				社員ID<tr><input class="aaa" type="number" th:field="*{employeeId}" >
-				<input type="submit" onclick="submitform('search','/selectById','get')" name="find" value="社員番号検索">
+				社員ID<tr><input class="aaa" type="number" th:field="*{employeeId}">
+
 					</br>
 					部 門<select th:field="*{deptId}">
 						<option value="0">--部門を選んでください--</option>
@@ -119,53 +113,59 @@
 						<option value="13">IT部</option>
 						<option value="14">財務部</option>
 					</select></br>
-					入社年月日<input type="date" name="employeeStartdate">-TO-<input type="date"
-						name="employeeStartdate"></br>
+					入社年月日<input type="date" th:field="*{employeeStartdate1}">-TO-<input type="date"
+						th:field="*{employeeStartdate2}"></br>
 					氏名<input type="text" th:field="*{employeeName}">
-					<input type="submit" onclick="submitform('search','/serchByName','get')" name="find" value="社員名前検索">
+
 					</br>
 
-					
 					<input type="submit" onclick="submitform('search','/findByKeyword','post')" id="select" value="検索">
-					
+
 					<input type="submit" onclick="submitform('search','/register','get')" name="add" value="追加">
-					
-					<input type="button" id="delete" value="削除">
-					
-					
+
 					<input id="btnclose" type="button" onclick="closeall()" value="閉じる">
 			</form>
 			<hr>
 			</tr>
-			<table id="emjh">
-				<thead>
-					<tr>
-						<th>選択</th>
-						<th>社員ID</th>
-						<th>社員氏名</th>
-						<th>部門</th>
-						<th>入社年月日</th>
-						<th>性別</th>
-						<th>年齢</th>
-						<th>住所</th>
-						<th>メールアドレス</th>
-				</thead>
-				</tr>
-				<tbody>
-					<tr th:each="employee,stat:${employeelist}">
-						<td><input type="checkbox"></input></td>
-						<td th:text="${employee.employeeId}"></td>
-						<td id="getname" onclick="edit()" th:text="${employee.employeeName}"></td>
-						<td th:text="${employee.deptName}"></td>
-						<td th:text="${#dates.format(employee.employeeStartdate, 'yyyy/MM/dd')}"></td>
-						<td th:text="${employee.genderType}"></td>
-						<td th:text="${#dates.format(employee.employeeBirthday, 'yyyy/MM/dd')}"></td>
-						<td th:text="${employee.employeeAddress}"></td>
-						<td th:text="${employee.employeeEmail}"></td>
-						
+			<form th:action="@{/delById}" method="post" id="myform">
+				<table id="emjh">
+					<thead>
+						<tr>
+							<th>選択</th>
+							<th>社員ID</th>
+							<th>社員氏名</th>
+							<th>部門</th>
+							<th>入社年月日</th>
+							<th>性別</th>
+							<th>年齢</th>
+							<th>住所</th>
+							<th>メールアドレス</th>
+							<th>操作処理</th>
+					</thead>
 					</tr>
-				</tbody>
-			</table>
+					<tbody>
+						<tr th:each="employee,stat:${employeelist}">
+							<td><input type="checkbox" class="checkbox" th:value="${employee.employeeId}"
+									name="selectedIds"></input></td>
+							<td th:text="${employee.employeeId}"></td>
+							<td id="getname" onclick="edit()" th:text="${employee.employeeName}"></td>
+							<td th:text="${employee.deptName}"></td>
+							<td th:text="${#dates.format(employee.employeeStartdate, 'yyyy/MM/dd')}"></td>
+							<td th:text="${employee.genderType}"></td>
+							<td th:text="${#dates.format(employee.employeeBirthday, 'yyyy/MM/dd')}"></td>
+							<td th:text="${employee.employeeAddress}"></td>
+							<td th:text="${employee.employeeEmail}"></td>
+							<td>
+
+								<input type="hidden" name="id" th:value="${employee.employeeId}">
+								<button type="submit" onclick="del()">削除</button>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+
 		</div>
 	</div>
 </body>
