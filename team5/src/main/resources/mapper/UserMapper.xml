@@ -21,6 +21,17 @@
 		<result column="UPDATE_DATE" property="updateDate"></result>
 		<result column="UPDATE_USER" property="updateUser"></result>
 	</resultMap>
+	
+    <resultMap id="BaseResultMap" type="com.csc.api.entity.User">
+        <id column="USER_ID" property="userId" ></id>
+        <result column="USER_NAME" property="userName"></result>
+        <result column="PWD" property="pwd"></result>
+    </resultMap>
+
+    <select id="findByUsername" resultMap="BaseResultMap">
+        SELECT * FROM USER WHERE USER_NAME = #{userName}
+    </select>
+
 	<select id="findAll" resultMap="EmpMap">
 		SELECT t1.*, t2.GENDER_TYPE as
 		GENDER_TYPE,t3.DEPT_NAME as DEPT_NAME

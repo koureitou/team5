@@ -18,14 +18,19 @@ public class UserService {
 	public List<Employee> findAll() {
 		return userMapper.findAll();
 	}
+
 	public List<Employee> findByKeyword(SelectForm selectForm) {
 		return userMapper.findByKeyword(selectForm);
 	}
-	public void delById(List<Long> ids) {
-		
-		 userMapper.delById(ids);
-		
 
+	public void delById(List<Long> ids) {
+
+		userMapper.delById(ids);
 	}
 
+//	public User findByUsername(LoginForm loginForm) {
+//
+//		return userMapper.login(loginForm);
+//
+//	}
 }

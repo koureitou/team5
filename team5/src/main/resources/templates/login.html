@@ -7,19 +7,24 @@
 	body{
 		margin: 0%;
 		padding: 20%;
-		background-color: darkgray;
+		background-color: rgb(128, 128, 192);
+		background: url('C:/Users/koure/デスクトップ/picture/true.jpg');
 	}
 	div{
+		width: 50%;
+		height:100%;
+		
 		position:relative;
-		float:left;
+		float:right;
+		
 	}
 	#div_container{
 		width: 100%;
 		height:100%;
-		left: 50%;
-		top: 50%;
+		left: 10%;
+		top: 30%;
 		border: 1px;
-		background-color: aliceblue;
+		background-color: rgb(255, 128, 192);
 		
 	}
 	#div_tab{
@@ -35,27 +40,30 @@
 </style>
 </head>
 <body>
-	<div id="div0">
+	<div id="div1">
 		<div id="div_container">
 			<p id="div_tab" class="center">ログイン</p>
-			<form action="index.html" method="get">
+			<form action="/findByUsername" method="post">
 				<table id="div_tab">
 					<tr>
-						<th>ユーザー名前：</th>
-						<td><input type="text" name="loginId" value="u0001"/></td>
-					</tr>
+						
+						<label for="userName">ユーザー名前:</label>
+						<td><input type="text" id="userName" name="userName" required></td>
+					</tr><br>
 					<tr>
-						<th>パスワード：</th>
-						<td><input type="password" name="pwd" value="ok"/></td>
-					</tr>
+						
+						<label for="pwd">パスワード:</label>
+						<td><input type="password" id="pwd" name="pwd" required></td>
+					</tr><br>
 					<tr>
 						<th colspan="2">
 							<input type="submit" value="ログイン"/>
-							<input type="button" onclick="javascrtpt:window.location.href='re.html'" value="新しいアカウントを作成しますか?"/>							
+							<input type="button"  value="新規作成"/>							
 						</th>
 					</tr>
 				</table>
 			</form>
+			<p th:text="${error}" style="color: red;"></p>
 		</div>
 	</div>
 </body>
