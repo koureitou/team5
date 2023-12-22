@@ -2,9 +2,12 @@ package com.csc.api.mapper;
 
 import java.util.List;
 
+
+
 import com.csc.api.entity.Employee;
 import com.csc.api.entity.User;
 
+import com.csc.api.form.RegisterUserForm;
 import com.csc.api.form.SelectForm;
 
 public interface UserMapper {
@@ -16,5 +19,9 @@ public interface UserMapper {
 	void delById(List<Long> ids);
 	
 	User findByUsername(String userName);
+	
+	Integer insertUser(RegisterUserForm registerUserform);
+	
+	Integer getUserMaxId();
 
 }

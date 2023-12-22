@@ -93,19 +93,16 @@
 				form.submit();
 			} else {
 				alert('削除項目を選択してください！');
-				
+				window.location.href = "/";
 			}
 		}
-
 	</script>
 </head>
-
 <body>
 	<div id="div_main">
 		<div id="div_eplist">
 			<form id="search" th:object="${selectForm}">
 				社員ID<tr><input class="aaa" type="number" th:field="*{employeeId}">
-
 					</br>
 					部 門<select th:field="*{deptId}">
 						<option value="0">--部門を選んでください--</option>
@@ -117,14 +114,10 @@
 					入社年月日<input type="date" th:field="*{employeeStartdate1}">-TO-<input type="date"
 						th:field="*{employeeStartdate2}"></br>
 					氏名<input type="text" th:field="*{employeeName}">
-
 					</br>
-
 					<input type="submit" onclick="submitform('search','/findByKeyword','post')" id="select" value="検索">
-
 					<input type="submit" onclick="submitform('search','/register','get')" name="add" value="追加">
 					<button type="submit" onclick="del()">削除</button>
-
 					<input id="btnclose" type="button" onclick="closeall()" value="閉じる">
 			</form>
 			<hr>
@@ -148,8 +141,8 @@
 					<tbody>
 						<tr th:each="employee,stat:${employeelist}">
 							<td><input type="checkbox" class="checkbox" th:value="${employee.employeeId}"
-									name="selectedIds"></input></td>
-							<td th:text="${employee.employeeId}"></td>
+									name="selectedIds"></input></td>							
+							<td><a th:href="@{/user/update/{id}(id=${employee.employeeId})}" th:text="${employee.employeeId}"></a></td>
 							<td id="getname" onclick="edit()" th:text="${employee.employeeName}"></td>
 							<td th:text="${employee.deptName}"></td>
 							<td th:text="${#dates.format(employee.employeeStartdate, 'yyyy/MM/dd')}"></td>
@@ -158,7 +151,6 @@
 							<td th:text="${employee.employeeAddress}"></td>
 							<td th:text="${employee.employeeEmail}"></td>
 							<td>
-
 								<input type="hidden" name="id" th:value="${employee.employeeId}">
 								<button type="submit" onclick="del()">削除</button>
 

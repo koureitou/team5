@@ -78,5 +78,16 @@
             #{employee}
         </foreach>
 	</update>
-
+	
+	<insert id="insertUser">
+		INSERT INTO USER (
+			USER_NAME,PWD
+			) VALUES (
+				#{userName},#{pwd}
+			)
+	</insert>
+	<select id="getUserMaxId" resultType="java.lang.Integer">
+	 	SELECT MAX(USER_ID)+1 FROM USER
+	</select>
+	
 </mapper>
