@@ -39,14 +39,14 @@
 		}
 	</style>
 	<script>
-	function submitform(formId, url, method = undefined) {
+		function submitform(formId, url, method = undefined) {
 			var form = document.getElementById(formId);
 			form.action = url;
 			if (method !== undefined) form.method = method;
 			form.getElementsByClassName = value;
 			form.submit();
 		}
-	
+
 	</script>
 </head>
 
@@ -54,31 +54,33 @@
 	<div id="div1">
 		<div id="div_container">
 			<p id="div_tab" class="center">ログイン</p>
-			<form id="form1" >
+			<form id="form1" th:object="${loginForm}">
 				<table id="div_tab">
 					<tr>
+						<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"
+							class="error-message"></span>
 
 						<label for="userName">ユーザー名前:</label>
-						<td><input type="text" id="userName" name="userName"></td>
+						<td><input type="text" id="userName" th:field="*{userName}"></td>
 					</tr><br>
 					<tr>
 
 						<label for="pwd">パスワード:</label>
-						<td><input type="password" id="pwd" name="pwd"></td>
+						<td><input type="password" id="pwd" th:field="*{pwd}"></td>
 					</tr><br>
 					<tr>
 						<th colspan="2">
 							<input type="submit" onclick="submitform('form1','/findByUsername','post')" value="ログイン" />
 							<input type="submit" onclick="submitform('form1','/registerUser','get')" value="新規作成" />
-							
+
 						</th>
 					</tr>
 				</table>
 			</form>
-			<p th:text="${error}" style="color: red;"></p>
+		
 		</div>
 	</div>
-	
+
 
 </body>
 
