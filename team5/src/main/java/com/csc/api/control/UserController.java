@@ -44,15 +44,17 @@ public class UserController {
 		if (selectedIds.isEmpty()) {
 
 			return "redirect:/findAll";
+			
 		}
 
 		List<Long> ids = Arrays.asList(selectedIds.split(",")).stream().map(Long::valueOf).collect(Collectors.toList());
 		try {
 			userService.delById(ids);
+			
 			return "redirect:/findAll";
 		} catch (Exception e) {
-			// 处理删除操作中的异常情况，可以根据需要进行适当的错误处理
-			return "redirect:/error"; // 重定向到错误页面或其他处理页面
+			
+			return "redirect:/error"; 
 		}
 	}
 }

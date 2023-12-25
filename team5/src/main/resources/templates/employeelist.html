@@ -72,48 +72,46 @@
 			form.getElementsByClassName = value;
 			form.submit();
 		}
-		
-	function del() {
-    const checkboxes = document.querySelectorAll('.checkbox');
-    const selectedIds = [];
 
-    checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            selectedIds.push(checkbox.value);
-        }
-        else {
-            const index = selectedIds.indexOf(checkbox.value);
-            if (index !== -1) {
-                selectedIds.splice(index, 1);
-            }
-        }
-    });
+		function del() {
+			const checkboxes = document.querySelectorAll('.checkbox');
+			const selectedIds = [];
 
-    if (selectedIds.length > 0) {
-        let userResponse = window.confirm("選択のデーターを削除ですか？");
+			checkboxes.forEach(checkbox => {
+				if (checkbox.checked) {
+					selectedIds.push(checkbox.value);
+				}
+				else {
+					const index = selectedIds.indexOf(checkbox.value);
+					if (index !== -1) {
+						selectedIds.splice(index, 1);
+					}
+				}
+			});
 
-        if (userResponse === true) {
-            const form = document.getElementById('deleteForm');
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'selectedIds';
-            input.value = selectedIds.join(',');
-            form.appendChild(input);
-            form.submit();
-            alert('削除成功！');
-            window.location.href = "/";
-        } else {
-           
-            selectedIds.length = 0;
-            console.log("あなたが削除操作をキャンセルしました");
-            
-            return;
-        }
-    } else {
-        alert('削除項目を選択してください！');
-        window.location.href = "/";
-    }
-}
+			if (selectedIds.length > 0) {
+				let userResponse = window.confirm("選択のデーターを削除ですか？");
+
+				if (userResponse === true) {
+					const form = document.getElementById('myform');
+					const input = document.createElement('input');
+					input.type = 'hidden';
+					input.name = 'selectedIds';
+					input.value = selectedIds.join(',');
+					form.appendChild(input);
+					form.submit();
+					alert('削除成功！');
+					
+				} else {
+					selectedIds.length = 0;
+					console.log("あなたが削除操作をキャンセルしました");
+					return;
+				}
+			} else {
+				alert('削除項目を選択してください！');
+				window.location.href = "/";
+			}
+		}
 
 	</script>
 </head>
@@ -138,13 +136,13 @@
 					<input type="submit" onclick="submitform('search','/findByKeyword','post')" id="select" value="検索">
 					<input type="submit" onclick="submitform('search','/register','get')" name="add" value="追加">
 					<button type="submit" onclick="del()">削除</button>
-	
+
 					<input id="btnclose" type="button" onclick="closeall()" value="閉じる">
 			</form>
 			<hr>
 			</tr>
 			<form th:action="@{/delById}" method="post" id="myform">
-				
+
 				<table id="emjh">
 					<thead>
 						<tr>
@@ -165,7 +163,7 @@
 							<td><input type="checkbox" class="checkbox" th:value="${employee.employeeId}"
 									name="selectedIds"></input></td>
 							<td><a th:href="@{/user/update/{id}(id=${employee.employeeId})}"
-									th:text="${employee.employeeId}" ></a></td>
+									th:text="${employee.employeeId}"></a></td>
 							<td id="getname" onclick="edit()" th:text="${employee.employeeName}"></td>
 							<td th:text="${employee.deptName}"></td>
 							<td th:text="${#dates.format(employee.employeeStartdate, 'yyyy/MM/dd')}"></td>
@@ -175,10 +173,10 @@
 							<td th:text="${employee.employeeEmail}"></td>
 							<td>
 								<input type="hidden" name="id" th:value="${employee.employeeId}">
-								<button type="submit" onclick="del()">削除</button>
+								<button type="button" onclick="del()">削除</button>
 
-					</td>				
-							
+							</td>
+
 						</tr>
 					</tbody>
 				</table>

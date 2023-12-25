@@ -28,13 +28,13 @@ public class RegisterController {
 		empService.add(registerForm);
 		return "redirect:/findAll";
 	}
-	@GetMapping("/updateEmp")
-	public String updateView1(Model model){
+	//@GetMapping("/updateEmp")
+	//public String updateView1(Model model){
 //		RegisterForm registerForm = new RegisterForm();
 //		registerForm.setEmployeeId(empService.getEmp());
 //		model.addAttribute("updateForm", updateForm);
-		return "name";
-	}
+	//	return "name";
+	//}
 
 	//@PostMapping("/resultEmp")
 //	public String updateView2(RegisterForm registerForm) {
