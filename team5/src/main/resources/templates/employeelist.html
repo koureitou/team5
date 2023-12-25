@@ -84,6 +84,8 @@
 			});
 
 			if (selectedIds.length > 0) {
+				let userResponse = window.confirm("選択のデーターを削除ですか？");
+				if (userResponse === true) {
 				const form = document.getElementById('deleteForm');
 				const input = document.createElement('input');
 				input.type = 'hidden';
@@ -91,13 +93,19 @@
 				input.value = selectedIds.join(',');
 				form.appendChild(input);
 				form.submit();
-			} else {
+				console.log("削除成功");
+				} else {					
+					console.log("あなたが削除操作をキャンセルしました");		
+				}
+			}
+			else {
 				alert('削除項目を選択してください！');
 				window.location.href = "/";
 			}
 		}
 	</script>
 </head>
+
 <body>
 	<div id="div_main">
 		<div id="div_eplist">
@@ -118,11 +126,13 @@
 					<input type="submit" onclick="submitform('search','/findByKeyword','post')" id="select" value="検索">
 					<input type="submit" onclick="submitform('search','/register','get')" name="add" value="追加">
 					<button type="submit" onclick="del()">削除</button>
+	
 					<input id="btnclose" type="button" onclick="closeall()" value="閉じる">
 			</form>
 			<hr>
 			</tr>
 			<form th:action="@{/delById}" method="post" id="myform">
+				
 				<table id="emjh">
 					<thead>
 						<tr>
@@ -141,8 +151,9 @@
 					<tbody>
 						<tr th:each="employee,stat:${employeelist}">
 							<td><input type="checkbox" class="checkbox" th:value="${employee.employeeId}"
-									name="selectedIds"></input></td>							
-							<td><a th:href="@{/user/update/{id}(id=${employee.employeeId})}" th:text="${employee.employeeId}"></a></td>
+									name="selectedIds"></input></td>
+							<td><a th:href="@{/user/update/{id}(id=${employee.employeeId})}"
+									th:text="${employee.employeeId}"></a></td>
 							<td id="getname" onclick="edit()" th:text="${employee.employeeName}"></td>
 							<td th:text="${employee.deptName}"></td>
 							<td th:text="${#dates.format(employee.employeeStartdate, 'yyyy/MM/dd')}"></td>
@@ -154,7 +165,8 @@
 								<input type="hidden" name="id" th:value="${employee.employeeId}">
 								<button type="submit" onclick="del()">削除</button>
 
-							</td>
+					</td>
+							
 						</tr>
 					</tbody>
 				</table>
