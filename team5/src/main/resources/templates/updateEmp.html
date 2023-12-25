@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<form th:action="@{/resultUpdate}" th:object="${updateForm}" method="post">
+	    <div>
+			<label for="employeeId">社員ID:</label>
+			<input type="text" th:field="*{employeeId}" readonly>
+		</div>
+		<div>
+			<label for="employeeName">氏名：</label> 
+			<input type="text" th:field="*{employeeName}">
+		</div>
+		<div>
+			<label for="deptId">所属：</label> 
+			<select th:field="*{deptId}">
+				<option value="0">選択してください</option>
+				<option value="11">管理部１</option>
+				<option value="12">営業部2</option>
+				<option value="13">IT部3</option>
+				<option value="14">財務部4</option>
+			</select>
+		</div>
+		<div>
+			<label for="gender">性別：</label> 
+			<input type="radio" th:field="*{genderTypeNo}" name="gender" value="1">男
+			<input type="radio" th:field="*{genderTypeNo}" name="gender" value="2" >女
+		</div>
+		<div>
+			<label for="number">電話番号:</label>
+			<input type="text" th:field="*{employeeTel}">
+		</div>
+		<div>
+			<label for="employeeStartDate">入社年月日</label>
+			<input type="date" th:field="*{employeeStartdate}">
+		</div>
+		<div>
+			<label for="birth">生年月日：</label> 
+			<input type="date" th:field="*{employeeBirthday}">
+		</div>
+		<div>
+			<label for="employeeAdress">住所:</label>
+			<input type="text" th:field="*{employeeAddress}">
+		</div>
+		<div>
+			<label for="employeeEmail">メールアドレス</label>
+			<input type="text" th:field="*{employeeEmail}">
+		</div>
+		<input type="submit" value="更新">
+	</form>
+
+
+</body>
+</html>

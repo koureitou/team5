@@ -17,29 +17,30 @@ import jakarta.validation.constraints.NotBlank;
 
 @Controller
 public class LoginController {
-	
-    @Autowired
-	private UseService useService;
-	@GetMapping("/login")
-    public String loginForm(@Validated LoginForm loginForm) {
-        return "login";
-    }
 
-    @PostMapping("/findByUsername")
-    public String login(@Validated LoginForm loginForm,BindingResult result, Model model) {
-        User user = useService.findByUsername(loginForm.getUserName());
-        
-        if(result.hasErrors()) {
-        
-      	   return "login";
-         }else {
-        	 if (user != null && user.getPwd().equals(loginForm.getPwd())) {
-                 return "redirect:/findAll";
-             } else {
-                 model.addAttribute("error", "ユーザー名前またパスワードは間違いです、もう一度を確認してください！");
-                 return "login";
-             }
-         }
-        
-    } 
+	@Autowired
+	private UseService useService;
+
+	@GetMapping("/login")
+	public String loginForm(LoginForm loginForm) {
+		return "login";
+	}
+
+	@PostMapping("/findByUsername")
+	public String login(@Validated LoginForm loginForm, BindingResult result, Model model) {
+		User user = useService.findByUsername(loginForm.getUserName());
+
+		if (result.hasErrors()) {
+
+			return "login";
+		} else {
+			if (user != null && user.getPwd().equals(loginForm.getPwd())) {
+				return "redirect:/findAll";
+			} else {
+				model.addAttribute("error", "ユーザー名前またパスワードは間違いです、もう一度を確認してください！");
+				return "login";
+			}
+		}
+
+	}
 }
