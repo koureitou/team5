@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>更新</title>
 </head>
+
 <body>
-	
+
 	<form th:action="@{/resultUpdate}" th:object="${updateForm}" method="post">
-	    <div>
+		<div>
 			<label for="employeeId">社員ID:</label>
-			<input type="text" th:field="*{employeeId}" readonly>
+			<input type="text" th:field="*{employeeId}"  th:value="${employee.employeeId}">
 		</div>
 		<div>
-			<label for="employeeName">氏名：</label> 
-			<input type="text" th:field="*{employeeName}">
+			<label for="employeeName">氏名：</label>
+			<input type="text" th:field="*{employeeName}" th:value="${employee.employeeName}">
 		</div>
 		<div>
-			<label for="deptId">所属：</label> 
-			<select th:field="*{deptId}">
+			<label for="deptId">所属：</label>
+			<select th:field="*{deptId}" th:value="${employee.deptId}">
 				<option value="0">選択してください</option>
 				<option value="11">管理部１</option>
 				<option value="12">営業部2</option>
@@ -26,21 +28,21 @@
 			</select>
 		</div>
 		<div>
-			<label for="gender">性別：</label> 
+			<label for="gender">性別：</label>
 			<input type="radio" th:field="*{genderTypeNo}" name="gender" value="1">男
-			<input type="radio" th:field="*{genderTypeNo}" name="gender" value="2" >女
+			<input type="radio" th:field="*{genderTypeNo}" name="gender" value="2">女
 		</div>
 		<div>
 			<label for="number">電話番号:</label>
-			<input type="text" th:field="*{employeeTel}">
+			<input type="text" th:field="*{employeeTel}" th:value="${employee.employeeTel}">
 		</div>
 		<div>
 			<label for="employeeStartDate">入社年月日</label>
-			<input type="date" th:field="*{employeeStartdate}">
+			<input type="date" th:field="*{employeeStartdate}" th:value="${employee.employeeStartdate}">
 		</div>
 		<div>
-			<label for="birth">生年月日：</label> 
-			<input type="date" th:field="*{employeeBirthday}">
+			<label for="birth">生年月日：</label>
+			<input type="date" th:field="*{employeeBirthday}" th:value="${employee.employeeStartdate}">
 		</div>
 		<div>
 			<label for="employeeAdress">住所:</label>
@@ -51,8 +53,8 @@
 			<input type="text" th:field="*{employeeEmail}">
 		</div>
 		<input type="submit" value="更新">
+		
 	</form>
-
-
 </body>
+
 </html>

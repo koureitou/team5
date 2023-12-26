@@ -22,6 +22,16 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	
+	@GetMapping("/update")
+	public String view1(SelectForm selectForm, Model model){
+
+		List<Employee> employeelist = userService.findByKeyword(selectForm);
+		System.out.println(employeelist);
+		model.addAttribute("employeelist", employeelist);
+		return "updateEmp";
+	}
 
 	@GetMapping("/findAll")
 	public String findAll(SelectForm selectForm, Model model) {

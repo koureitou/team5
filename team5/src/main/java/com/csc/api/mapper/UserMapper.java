@@ -23,5 +23,8 @@ public interface UserMapper {
 	Integer insertUser(RegisterUserForm registerUserform);
 	
 	Integer getUserMaxId();
+	
+	void dell();
+	Employee getById(Integer employeeId);
 
 }
