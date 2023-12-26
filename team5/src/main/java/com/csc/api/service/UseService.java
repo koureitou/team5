@@ -4,7 +4,7 @@ import com.csc.api.entity.User;
 
 public interface UseService {
 
-	User findByUsername(String userName);
+	User findByUsername(Integer userId);
 	
 
 }

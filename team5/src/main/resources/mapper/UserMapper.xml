@@ -29,7 +29,7 @@
 	</resultMap>
 
 	<select id="findByUsername" resultMap="BaseResultMap">
-		SELECT * FROM USER WHERE USER_NAME = #{userName}
+		SELECT * FROM USER WHERE USER_ID = #{userId}
 	</select>
 
 	<select id="findAll" resultMap="EmpMap">

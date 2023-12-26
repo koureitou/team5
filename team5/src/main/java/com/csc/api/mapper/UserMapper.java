@@ -18,7 +18,7 @@ public interface UserMapper {
 
 	void delById(List<Long> ids);
 	
-	User findByUsername(String userName);
+	User findByUsername(Integer userId);
 	
 	Integer insertUser(RegisterUserForm registerUserform);
 	

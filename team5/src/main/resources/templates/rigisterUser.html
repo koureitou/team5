@@ -38,14 +38,14 @@
 			cursor: pointer;
 		}
 	</style>
-	<title>社員情報登録・更新</title>
+	<title>ユーザー登録</title>
 </head>
 
 <body>
 	
 			<h2>Registration Form</h2>
 			<form th:action="@{/resultUser}" th:object="${registerUserForm}" method="post">
-				<input type="hidden"  th:field="*{userId}" required>
+				<input type="text"  th:field="*{userId}" readonly>
 				<label for="userName">名前:</label>
 				<input type="text"  th:field="*{userName}" required>
 				<label for="pwd">パスワード:</label>

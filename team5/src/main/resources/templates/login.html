@@ -62,13 +62,20 @@
 
 						<label for="userName">ユーザー名前:</label>
 						<td><input type="text" id="userName" th:field="*{userName}"></td>
-					</tr><br>
+					</tr>
+					<tr>
+						<span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="error-message"></span><br>
+
+						<label for="userId">ユーザーID:</label>
+						<td><input type="text" id="userId" th:field="*{userId}"></td>
+					</tr>
+					
 					<tr>
 						<span th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}" class="error-message"></span><br>
 
 						<label for="pwd">パスワード:</label>
 						<td><input type="password" id="pwd" th:field="*{pwd}"></td>
-					</tr><br>
+					</tr>
 					<tr>
 						<th colspan="2">
 							<input type="submit" onclick="submitform('form1','/findByUsername','post')" value="ログイン" />
