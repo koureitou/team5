@@ -2,10 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<script src="/js/emp.js"></script>
+
 <title>社員情報登録・更新</title>
 </head>
 <body>
-<form th:action="@{/result}" th:object="${registerForm}" method="post">
+<form id="reform" th:object="${registerForm}" >
+
+	
 	    <div>
 			<label for="employeeId">社員ID:</label>
 			<input type="text" th:field="*{employeeId}" readonly>
@@ -50,9 +54,15 @@
 			<label for="employeeEmail">メールアドレス</label>
 			<input type="text" th:field="*{employeeEmail}">
 		</div>
-		<input type="submit" value="登録">
-		<input type="submit" value="修正">
+
+		
+	
+
+	
+		<input type="submit" onclick="submitform('reform','/result','post')" value="追加">
+		<input type="submit" onclick="submitform('reform','/resultUpdate','post')" value="更新">
 		<input type="submit" value="閉じる">
+
 	</form>
 </body>
 </html>

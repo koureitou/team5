@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.csc.api.form.RegisterForm;
+
 import com.csc.api.mapper.EmpMapper;
 
 @Service
@@ -16,6 +17,9 @@ public class EmpService {
 	}
 	public Integer getEmpMaxId() {
 		return empMapper.getMaxId();
+	}
+	public Integer updateEmp(RegisterForm registerForm) {
+		return empMapper.update(registerForm);
 	}
 }
 

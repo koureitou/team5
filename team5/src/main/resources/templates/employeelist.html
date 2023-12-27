@@ -1,55 +1,130 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns="http://www.thymeleaf.org">
 
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="/js/emp.js"></script>
 
 	<title>Insert title here</title>
+
 	<style type="text/css">
+		table {
+			border-collapse: collapse;
+			/* 合并单元格边框 */
+			width: 100%;
+		}
+
+		th,
+		td {
+			border: 1px solid #dddddd;
+			/* 设置边框线样式 */
+
+			text-align: left;
+			/* 文本左对齐 */
+		}
+
 		body {
 			margin: 0;
 			padding: 0;
 			background-color: aliceblue;
 		}
 
-		div {
-			position: relative;
-			float: left;
+		form {
+			border: 0px solid rgb(255, 0, 0);
+			margin: auto;
 		}
 
-		#div_main {
-			width: 80%;
-			height: 100%;
-			border: 1px;
-			margin-left: 10%;
-			float: left;
-			background-color: aliceblue;
+		label {
+			display: block;
+			/*margin-bottom: 10px;*/
 		}
 
-		#div_eplist {
-			width: 80%;
-			height: 100%;
-			border: 1px;
-			margin-left: 10%;
-			float: left;
-			background-color: aliceblue;
+		input {
+
+			padding: 5px;
+			margin-bottom: 5px;
+			box-sizing: border-box;
+			/* 保证输入框的宽度包括边框和内边距 */
 		}
 
-		#emjh {
+
+		button {
+			background-color: #4caf50;
+			color: white;
+			padding: 6px 6px;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+
+		input[type="submit"] {
+			width: 100px;
+			height: 40px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			margin-left: auto;
+			margin-right: 0;
+		
+			
+			/*cursor: pointer; */
+		}
+		
+		.container {
+			border: 0px;
+			display: grid;
 			width: 100%;
+			height: 100%;
+			grid-template-areas: "header-0-0 header-0-1 header-1"
+				"left main right"
+				"footer-0-0 footer-0-1 footer-1";
+			grid-template-columns: 120px 4fr 1fr;
+			grid-template-rows: 160px 1fr 80px;
 		}
 
-		#emjh,
-		#emjh tr,
-		#emjh td,
-		#emjh th {
-			border: 1px solid blue;
-			border-collapse: collapse;
-			font-family: fantasy;
-			font-size: medium;
-			line-height: 30px;
+		.container>div {
+			border: 0px dashed #888;
+		}
+
+		.header-0-0 {
+			grid-area: header-0-0;
+		}
+
+		.header-0-1 {
+			grid-area: header-0-1;
+		}
+
+		.header-1 {
+			grid-area: header-1;
+		}
+
+		.left {
+			grid-area: left;
+		}
+
+		.main {
+
+			grid-area: main;
+		}
+
+		.right {
+			grid-area: right;
+		}
+
+		.footer-0-0 {
+			grid-area: footer-0-0;
+		}
+
+		.footer-0-1 {
+			grid-area: footer-0-1;
+		}
+
+		.footer-1 {
+			grid-area: footer-1;
 		}
 	</style>
 	<script type="text/javascript">
@@ -65,13 +140,7 @@
 			}
 		}
 
-		function submitform(formId, url, method = undefined) {
-			var form = document.getElementById(formId);
-			form.action = url;
-			if (method !== undefined) form.method = method;
-			form.getElementsByClassName = value;
-			form.submit();
-		}
+
 
 		function del() {
 			const checkboxes = document.querySelectorAll('.checkbox');
@@ -101,7 +170,7 @@
 					form.appendChild(input);
 					form.submit();
 					alert('削除成功！');
-					
+
 				} else {
 					selectedIds.length = 0;
 					console.log("あなたが削除操作をキャンセルしました");
@@ -117,11 +186,12 @@
 </head>
 
 <body>
-	<div id="div_main">
-		<div id="div_eplist">
+	<div class="container">
+		<div class="header-0-0"></div>
+		<div class="header-0-1">
 			<form id="search" th:object="${selectForm}">
 				社員ID<tr><input class="aaa" type="number" th:field="*{employeeId}">
-					</br>
+
 					部 門<select th:field="*{deptId}">
 						<option value="0">--部門を選んでください--</option>
 						<option value="11">管理部</option>
@@ -133,44 +203,54 @@
 						th:field="*{employeeStartdate2}"></br>
 					氏名<input type="text" th:field="*{employeeName}">
 					</br>
+
 					<input type="submit" onclick="submitform('search','/findByKeyword','post')" id="select" value="検索">
 					<input type="submit" onclick="submitform('search','/register','get')" name="add" value="追加">
-					<button type="submit" onclick="del()">削除</button>
 
-					<input id="btnclose" type="button" onclick="closeall()" value="閉じる">
+
+					<input id="btnclose" type="submit" onclick="closeall()" value="閉じる">
 			</form>
 			<hr>
 			</tr>
-			<form th:action="@{/delById}" method="post" id="myform">
+
+		</div>
+		<div class="header-1"></div>
+		<div class="left"></div>
+		<div class="main">
+			<form class="main" clth:action="@{/delById}" method="post" id="myform">
 
 				<table id="emjh">
 					<thead>
 						<tr>
 							<th>選択</th>
 							<th>社員ID</th>
-							<th>社員氏名</th>
-							<th>部門</th>
+							<th>氏名</th>
+							<th>所属</th>
 							<th>入社年月日</th>
 							<th>性別</th>
 							<th>年齢</th>
+							<th>生年月日</th>
 							<th>住所</th>
 							<th>メールアドレス</th>
-							<th>操作処理</th>
+							<th>操作</th>
 					</thead>
 					</tr>
 					<tbody>
 						<tr th:each="employee,stat:${employeelist}">
 							<td><input type="checkbox" class="checkbox" th:value="${employee.employeeId}"
 									name="selectedIds"></input></td>
-							<td><a th:href="@{/user/update/{id}(id=${employee.employeeId})}"
+							<td><a th:href="@{/update/{employeeId}(employeeId=${employee.employeeId})}"
 									th:text="${employee.employeeId}"></a></td>
-							<td id="getname" onclick="edit()" th:text="${employee.employeeName}"></td>
+							<td id="getname" th:text="${employee.employeeName}"></td>
 							<td th:text="${employee.deptName}"></td>
 							<td th:text="${#dates.format(employee.employeeStartdate, 'yyyy/MM/dd')}"></td>
 							<td th:text="${employee.genderType}"></td>
 							<td th:text="${#dates.format(employee.employeeBirthday, 'yyyy/MM/dd')}"></td>
+							<td th:text="${employee.employeeTel}"></td>
 							<td th:text="${employee.employeeAddress}"></td>
 							<td th:text="${employee.employeeEmail}"></td>
+							
+							
 							<td>
 								<input type="hidden" name="id" th:value="${employee.employeeId}">
 								<button type="button" onclick="del()">削除</button>
@@ -181,9 +261,13 @@
 					</tbody>
 				</table>
 			</form>
-
 		</div>
+		<div class="right"></div>
+		<div class="footer-0-0"></div>
+		<div class="footer-0-1"></div>
+		<div class="footer-1"></div>
 	</div>
+
 </body>
 
 </html>

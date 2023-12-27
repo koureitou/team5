@@ -28,7 +28,7 @@ public class LoginController {
 
 	@PostMapping("/findByUsername")
 	public String login(@Validated LoginForm loginForm, BindingResult result, Model model) {
-		User user = useService.findByUsername(loginForm.getUserName());
+		User user = useService.findByUsername(loginForm.getUserId());
 
 		if (result.hasErrors()) {
 

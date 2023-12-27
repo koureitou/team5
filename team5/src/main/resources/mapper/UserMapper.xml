@@ -20,17 +20,18 @@
 		<result column="CREATE_USER" property="createUser"></result>
 		<result column="UPDATE_DATE" property="updateDate"></result>
 		<result column="UPDATE_USER" property="updateUser"></result>
+		
 	</resultMap>
-	
-    <resultMap id="BaseResultMap" type="com.csc.api.entity.User">
-        <id column="USER_ID" property="userId" ></id>
-        <result column="USER_NAME" property="userName"></result>
-        <result column="PWD" property="pwd"></result>
-    </resultMap>
 
-    <select id="findByUsername" resultMap="BaseResultMap">
-        SELECT * FROM USER WHERE USER_NAME = #{userName}
-    </select>
+	<resultMap id="BaseResultMap" type="com.csc.api.entity.User">
+		<id column="USER_ID" property="userId"></id>
+		<result column="USER_NAME" property="userName"></result>
+		<result column="PWD" property="pwd"></result>
+	</resultMap>
+
+	<select id="findByUsername" resultMap="BaseResultMap">
+		SELECT * FROM USER WHERE USER_ID = #{userId}
+	</select>
 
 	<select id="findAll" resultMap="EmpMap">
 		SELECT t1.*, t2.GENDER_TYPE as
@@ -72,22 +73,29 @@
 		</where>
 	</select>
 
-	<update id="delById" parameterType="java.util.List" >
+	<update id="delById" parameterType="java.util.List">
 		UPDATE T_EMPLOYEE SET DEL_FLG=1 WHERE EMPLOYEE_ID IN
-		<foreach item="employee" collection="list" open="(" separator="," close=")">
-            #{employee}
-        </foreach>
+		<foreach item="employee" collection="list" open="("
+			separator="," close=")">
+			#{employee}
+		</foreach>
 	</update>
-	
+
 	<insert id="insertUser">
 		INSERT INTO USER (
-			USER_NAME,PWD
-			) VALUES (
-				#{userName},#{pwd}
-			)
+		USER_NAME,PWD
+		) VALUES (
+		#{userName},#{pwd}
+		)
 	</insert>
 	<select id="getUserMaxId" resultType="java.lang.Integer">
-	 	SELECT MAX(USER_ID)+1 FROM USER
+		SELECT MAX(USER_ID)+1 FROM USER
+	</select>
+	<select id="getById" resultMap="EmpMap">
+		SELECT * FROM T_EMPLOYEE
+		WHERE EMPLOYEE_ID=#{employeeId}
 	</select>
 	
+	
+
 </mapper>

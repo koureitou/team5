@@ -1,5 +1,6 @@
 package com.csc.api.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -18,10 +19,15 @@ public interface UserMapper {
 
 	void delById(List<Long> ids);
 	
-	User findByUsername(String userName);
+	User findByUsername(Integer userId);
 	
 	Integer insertUser(RegisterUserForm registerUserform);
 	
 	Integer getUserMaxId();
+	
+	void dell();
+	Employee getById(Integer employeeId);
+	
+	//Integer getEmployeeAge(Date birthday);
 
 }

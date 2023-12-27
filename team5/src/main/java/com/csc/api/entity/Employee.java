@@ -23,6 +23,7 @@ public class Employee {
 	private String createUser;
 	private Date updateDate;
 	private String updateUser;
+	private Integer employeeAge;
 
 
 }
