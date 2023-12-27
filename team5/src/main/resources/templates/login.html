@@ -5,10 +5,13 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<style type="text/css">
+
+
 		body {
 			margin: 0%;
-			padding: 20%;
+			padding: 10%;
 			background-color: rgb(128, 128, 192);
+			background-image: url("/picture/true.jpg");
 
 		}
 
@@ -23,17 +26,18 @@
 		#div_container {
 			width: 100%;
 			height: 100%;
-			left: 10%;
-			top: 30%;
+			left: 0%;
+			top: 0%;
 			border: 1px;
 			background-color: rgb(255, 128, 192);
 		}
 
 		#div_tab {
-			border: 0px solid blue;
+			border: 1px solid blue;
 			border-collapse: collapse;
 			width: 100%;
 			padding-top: 0%;
+			border: 1px;
 			text-align: center;
 			line-height: 30px;
 		}
@@ -51,7 +55,7 @@
 </head>
 
 <body>
-	<div id="div1">
+	<div id="div">
 		<div id="div_container">
 			<p id="div_tab" class="center">ログイン</p>
 			<form id="form1" th:object="${loginForm}">
@@ -64,12 +68,13 @@
 						<td><input type="text" id="userName" th:field="*{userName}"></td>
 					</tr>
 					<tr>
-						<span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="error-message"></span><br>
+						<span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"
+							class="error-message"></span><br>
 
 						<label for="userId">ユーザーID:</label>
 						<td><input type="text" id="userId" th:field="*{userId}"></td>
 					</tr>
-					
+
 					<tr>
 						<span th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}" class="error-message"></span><br>
 

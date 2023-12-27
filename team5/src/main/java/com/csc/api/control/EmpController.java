@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.csc.api.dao.EmployeeDao;
 import com.csc.api.entity.Employee;
-
+/**
+ * 無効
+ * */
 
 //@Controller
 //@GetMapping("/select")

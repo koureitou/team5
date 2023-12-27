@@ -20,6 +20,7 @@
 		<result column="CREATE_USER" property="createUser"></result>
 		<result column="UPDATE_DATE" property="updateDate"></result>
 		<result column="UPDATE_USER" property="updateUser"></result>
+		
 	</resultMap>
 
 	<resultMap id="BaseResultMap" type="com.csc.api.entity.User">
@@ -94,5 +95,7 @@
 		SELECT * FROM T_EMPLOYEE
 		WHERE EMPLOYEE_ID=#{employeeId}
 	</select>
+	
+	
 
 </mapper>

@@ -1,6 +1,10 @@
 package com.csc.api.control;
 
+
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Arrays;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,8 +39,15 @@ public class UserController {
 
 	@GetMapping("/findAll")
 	public String findAll(SelectForm selectForm, Model model) {
+//		Employee employee =new Employee();
+//		LocalDate currentDate = LocalDate.now();
+//		LocalDate loc = LocalDate.of(employee.getEmployeeBirthday().getYear(), 
+//				employee.getEmployeeBirthday().getMonth(), employee.getEmployeeBirthday().getDay());		
+//		Period period = Period.between(loc, currentDate);
+//		employee.setEmployeeAge(period.getYears());
 		List<Employee> employeelist = userService.findAll();
 		System.out.println(employeelist);
+		
 		model.addAttribute("employeelist", employeelist);
 		return "employeelist";
 	}

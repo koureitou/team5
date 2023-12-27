@@ -1,5 +1,6 @@
 package com.csc.api.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,4 +54,8 @@ public class UserService {
 		return userMapper.getById(employeeId);
 
 	}
+	//public Integer getEmployeeAge(Date birthday) {
+		
+		//return userMapper.getEmployeeAge(birthday);
+	//}
 }

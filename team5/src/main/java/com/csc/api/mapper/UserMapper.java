@@ -1,5 +1,6 @@
 package com.csc.api.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -26,5 +27,7 @@ public interface UserMapper {
 	
 	void dell();
 	Employee getById(Integer employeeId);
+	
+	//Integer getEmployeeAge(Date birthday);
 
 }
