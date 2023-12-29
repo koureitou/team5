@@ -7,13 +7,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.csc.api.entity.User;
 import com.csc.api.form.LoginForm;
 import com.csc.api.service.UseService;
-
-import jakarta.validation.constraints.NotBlank;
 
 @Controller
 public class LoginController {
@@ -28,12 +24,7 @@ public class LoginController {
 
 	@PostMapping("/findByUsername")
 	public String login(@Validated LoginForm loginForm, BindingResult result, Model model) {
-		
-		if(loginForm.getUserId()==null) {
-			return "login";
-			
-		}else {
-		
+
 		User user = useService.findByUsername(loginForm.getUserId());
 
 		if (result.hasErrors()) {
@@ -49,5 +40,5 @@ public class LoginController {
 		}
 
 	}
-	}
+
 }
