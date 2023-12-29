@@ -28,6 +28,12 @@ public class LoginController {
 
 	@PostMapping("/findByUsername")
 	public String login(@Validated LoginForm loginForm, BindingResult result, Model model) {
+		
+		if(loginForm.getUserId()==null) {
+			return "login";
+			
+		}else {
+		
 		User user = useService.findByUsername(loginForm.getUserId());
 
 		if (result.hasErrors()) {
@@ -42,5 +48,6 @@ public class LoginController {
 			}
 		}
 
+	}
 	}
 }

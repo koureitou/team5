@@ -1,0 +1,161 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: sans-serif;
+    background: #f1f1f1;
+  }
+  
+  .login-box {
+    position: relative;
+    max-width: 400px;
+    height: 400px;
+    margin: 100px auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  }
+.login-box .openleft {
+    width: 120px;
+    height: 90px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-image: url(/picture/left.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .login-box .closeleft {
+    width: 120px;
+    height: 90px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-image: url(/picture/right.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .login-box .openright {
+    width: 120px;
+    height: 90px;
+    top: 0;
+    right: -28px;
+    position: absolute;
+    background-image: url(/picture/right.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .login-box .closeright {
+    width: 120px;
+    height: 90px;
+    top: 0;
+    right: -28px;
+    position: absolute;
+    background-image: url(/picture/left.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .user-box {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #999;
+    outline: none;
+  }
+  
+  .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #999;
+    pointer-events: none;
+    transition: 0.5s;
+  }
+  
+  .user-box input:focus ~ label,
+  .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #1abc9c;
+    font-size: 12px;
+  }
+  
+  submit {
+    display: inline-block;
+    background: #1abc9c;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.5s;
+  }
+  
+  a:hover {
+    background: #bbd3ce;
+    color: #1abc9c;
+  }
+  
+  .login-btn {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #342d2d;
+  }
+
+  .login-btn:hover {
+    color: #1abc9c;
+  }
+
+  .register-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #342d2d;
+  }
+  
+  .register-link:hover {
+    color: #1abc9c;
+  }
+  button {
+			background-color: #4caf50;
+			color: white;
+			padding: 6px 6px;
+			border: none;
+			border-radius: 3px;
+			cursor: pointer;
+		}
+
+		input[type="submit"] {
+			width: 100px;
+			height: 40px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			margin-left: auto;
+			margin-right: 0;
+		
+			
+			/*cursor: pointer; */
+		}
+
