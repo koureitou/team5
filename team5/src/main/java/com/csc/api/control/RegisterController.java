@@ -61,8 +61,7 @@ public class RegisterController {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String startDate=sdf.format(employee.getEmployeeStartdate());
-		String birthDate=sdf.format(employee.getEmployeeBirthday());
-		
+		String birthDate=sdf.format(employee.getEmployeeBirthday());		
 	    registerForm.setEmployeeId(employee.getEmployeeId());
 	    registerForm.setDeptId(employee.getDeptId());
 	    registerForm.setEmployeeStartdate(startDate);
